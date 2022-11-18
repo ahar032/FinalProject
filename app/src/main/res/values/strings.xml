@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BusxHacktiv</string>
+    <string name="bux_is_a_online">Bux is a online booking service for Bus transportation. login now to user Bux services.</string>
+    <string name="welcome">Welcome</string>
+    <string name="picture">picture</string>
+    <string name="sign_up_wit">Sign up with google</string>
+    <string name="bus_exchange">bus exchange</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
 </resources>
