@@ -14,7 +14,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mahar.busxhacktiv.auth.AddPhoneActivity;
 import com.mahar.busxhacktiv.auth.SignUpActivity;
+import com.mahar.busxhacktiv.bus.Bus;
 
 public class SplashScreen extends AppCompatActivity {
     FirebaseAuth auth;
@@ -36,9 +38,11 @@ public class SplashScreen extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-//                                TODO: pindahkan halaman ke dashboard
+                                Intent i=new Intent(SplashScreen.this, Bus.class);
+                                startActivity(i);
                             }else if(!snapshot.exists()){
-//                                TODO: pindahkan halaman ke halaman phone
+                                Intent i=new Intent(SplashScreen.this, AddPhoneActivity.class);
+                                startActivity(i);
                             }
                         }
 
@@ -48,7 +52,6 @@ public class SplashScreen extends AppCompatActivity {
                         }
                     });
                 }else{
-//                    TODO: PINDAHKAN halaman ke halaman SignUp
                     Intent signUp=new Intent(SplashScreen.this,SignUpActivity.class);
                     startActivity(signUp);
                 }
