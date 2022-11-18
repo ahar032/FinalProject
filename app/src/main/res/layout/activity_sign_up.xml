@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.SignUpActivity">
+<ImageView
+    android:id="@+id/picture"
+    android:layout_marginTop="120dp"
+    android:layout_centerHorizontal="true"
+    android:layout_width="200dp"
+    android:layout_height="300dp"
+    android:background="@drawable/people_removebg"
+    android:scaleType="fitXY"
+    android:contentDescription="@string/picture"/>
+    <TextView
+        android:id="@+id/welcome_"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/picture"
+        android:layout_marginTop="60dp"
+        android:text="@string/welcome"
+        android:textAppearance="@style/welcome_"
+        />
+    <TextView
+        android:id="@+id/bux_is_a_on"
+        android:layout_width="224dp"
+        android:layout_height="84dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/welcome_"
+        android:layout_marginTop="20dp"
+        android:text="@string/bux_is_a_online"
+        android:textAppearance="@style/bux_is_a_on"
+        android:lineSpacingExtra="11sp"
+        android:translationY="-5.6sp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="308dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:drawableStart="@drawable/googleg_standard_color_18"
+        android:drawablePadding="12dp"
+        android:paddingVertical="9dp"
+        android:paddingHorizontal="28dp"
+        android:lineSpacingExtra="11sp"
+        style="@style/sign_up_wit"
+        android:text="@string/sign_up_wit"
+        android:textAllCaps="false" />
+</RelativeLayout>
