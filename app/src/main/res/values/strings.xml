@@ -23,4 +23,12 @@
     <string name="tickets">Tickets</string>
     <string name="search">Search</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo">logo</string>
+    <string name="departure">Departure</string>
+    <string name="location">location</string>
+    <string name="arrival">Arrival</string>
+    <string name="passangers">Passangers</string>
+    <string name="date">Date</string>
+    <string name="_1_ppl">1 ppl</string>
+    <string name="search_bus">search bus</string>
 </resources>
