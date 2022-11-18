@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "767675387851",
+    "project_id": "busxhacktiv1",
+    "storage_bucket": "busxhacktiv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:767675387851:android:3e59918d09438801a6b04e",
+        "android_client_info": {
+          "package_name": "com.mahar.busxhacktiv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "767675387851-dlo8mp2deo3bipff2qv7ufaqimec9kg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvgUtCLZNyPnx9mwLFjbPV91lSzf2LLa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "767675387851-dlo8mp2deo3bipff2qv7ufaqimec9kg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
