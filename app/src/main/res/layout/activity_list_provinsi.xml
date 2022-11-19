@@ -39,26 +39,48 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/inputfield"
         android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/input_provinsi"
-            style="@style/input"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/frame_165"
-            android:drawableStart="@drawable/ic_baseline_search_24"
-            android:drawablePadding="10dp"
-            android:hint="Tujuan"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textSize="14sp" />
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/input_from"
+                style="@style/input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/frame_165"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/departure"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:layout_marginBottom="10dp"
+                android:textSize="14sp" />
+            <EditText
+                android:id="@+id/input_where"
+                style="@style/input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="12dp"
+                android:background="@drawable/frame_165"
+                android:drawableStart="@drawable/ic_baseline_search_24"
+                android:drawablePadding="10dp"
+                android:hint="@string/arrival"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textSize="14sp" />
+        </LinearLayout>
+
         <ImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:id="@+id/enter"
+            android:layout_gravity="center_vertical"
             android:src="@drawable/ic_baseline_keyboard_backspace_24"
             android:contentDescription="enter" />
     </LinearLayout>

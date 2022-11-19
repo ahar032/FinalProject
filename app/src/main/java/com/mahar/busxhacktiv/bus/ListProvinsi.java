@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,11 +31,13 @@ import java.util.List;
 public class ListProvinsi extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference reference;
-    EditText inputProvinsi;
+    EditText departure,arrival;
     ImageView goback,enter;
     RecyclerView rv;
     ProgressBar pb;
     List<Provinsi> list=new ArrayList<>();
+    List<String> listAll=new ArrayList<>();
+
     ProvinsiAdapter provinsiAdapter;
 
     @Override
@@ -44,8 +47,8 @@ public class ListProvinsi extends AppCompatActivity {
 
         database=FirebaseDatabase.getInstance();
         reference=database.getReference();
-
-        inputProvinsi=findViewById(R.id.input_provinsi);
+        departure=findViewById(R.id.input_from);
+        arrival=findViewById(R.id.input_where);
         rv=findViewById(R.id.rv);
         pb=findViewById(R.id.pb);
         enter=findViewById(R.id.enter);
@@ -55,36 +58,110 @@ public class ListProvinsi extends AppCompatActivity {
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 onBackPressed();
             }
         });
         rv.setLayoutManager(new LinearLayoutManager(ListProvinsi.this));
         list=new ArrayList<>();
+        listAll=new ArrayList<>();
+
         provinsiAdapter=new ProvinsiAdapter(list);
         rv.setAdapter(provinsiAdapter);
-        provinsiAdapter.setOnClickListener(new ProvinsiAdapter.OnItemClickListener() {
+        departure.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onItemClick(Provinsi provinsi) {
-                if (getIntent().getStringExtra("where").equals("-")){
-                    Intent i=new Intent(ListProvinsi.this,HomeFragment.class);
-                    i.putExtra("where",provinsi.getName());
-                    startActivity(i);
-                } else if(getIntent().getStringExtra("from").equals("-")){
-                    Intent i=new Intent(ListProvinsi.this,HomeFragment.class);
-                    i.putExtra("from",provinsi.getName());
-                    startActivity(i);
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.i("char",charSequence.toString());
+                reference.child("Provinsi").orderByChild("name").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot sp:snapshot.getChildren()){
+                            Provinsi provinsi=sp.getValue(Provinsi.class);
+                            if(provinsi.getName().contains(charSequence.toString().trim().toUpperCase())){
+                                list.add(provinsi);
+                            }
+                        }
+                        provinsiAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                provinsiAdapter.setOnClickListener(new ProvinsiAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Provinsi provinsi) {
+                        departure.setText(provinsi.getName());
+                        list.clear();
+
+                    }
+                });
             }
         });
-        if(inputProvinsi.getText().toString().trim().isEmpty()){
-            reference.child("Provinsi").addValueEventListener(new ValueEventListener() {
+
+        arrival.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Log.i("char",charSequence.toString());
+                reference.child("Provinsi").orderByChild("name").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        list.clear();
+                        for (DataSnapshot sp:snapshot.getChildren()){
+                            Provinsi provinsi=sp.getValue(Provinsi.class);
+                            if(provinsi.getName().contains(charSequence.toString().trim().toUpperCase())){
+                                list.add(provinsi);
+                            }
+                        }
+                        provinsiAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                provinsiAdapter.setOnClickListener(new ProvinsiAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Provinsi provinsi) {
+                        arrival.setText(provinsi.getName());
+                        list.clear();
+
+                    }
+                });
+            }
+        });
+
+        reference.child("Provinsi").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     list.clear();
+                    listAll.clear();
                     loading(true);
                     for (DataSnapshot sp:snapshot.getChildren()){
                         Provinsi provinsi=sp.getValue(Provinsi.class);
                         list.add(provinsi);
+                        listAll.add(provinsi.getName());
                     }
                     provinsiAdapter.notifyDataSetChanged();
                     loading(false);
@@ -95,40 +172,21 @@ public class ListProvinsi extends AppCompatActivity {
 
                 }
             });
-        }
+
         enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loading(true);
-                String input=inputProvinsi.getText().toString().trim().toUpperCase();
-
-                if(input.isEmpty()){
-                    loading(false);
-                    Toast.makeText(ListProvinsi.this, "Mohon isi provinsi", Toast.LENGTH_SHORT).show();
+                String dari=departure.getText().toString().trim();
+                String tujuan=arrival.getText().toString().trim();
+                if(dari.isEmpty() || tujuan.isEmpty()){
+                    return;
+                }else if(listAll.contains(dari) && listAll.contains(tujuan)){
+                    Intent i=new Intent();
+                    i.putExtra("departure",dari);
+                    i.putExtra("arrival",tujuan);
+                    setResult(RESULT_OK,i);
+                    finish();
                 }
-                else{
-                    reference.child("Provinsi").orderByChild("name").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            list.clear();
-                            for (DataSnapshot sp:snapshot.getChildren()){
-                                Provinsi provinsi=sp.getValue(Provinsi.class);
-                                if(provinsi.getName().contains(input)){
-                                    list.add(provinsi);
-                                }
-                            }
-                            provinsiAdapter.notifyDataSetChanged();
-                            loading(false);
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-
             }
         });
 
@@ -138,11 +196,11 @@ public class ListProvinsi extends AppCompatActivity {
         if(p){
 //                true == visible
             pb.setVisibility(View.VISIBLE);
-            inputProvinsi.setEnabled(false);
+            arrival.setEnabled(false);
             enter.setEnabled(false);
         }else{
             pb.setVisibility(View.GONE);
-            inputProvinsi.setEnabled(true);
+            arrival.setEnabled(true);
             enter.setEnabled(true);
         }
     }
