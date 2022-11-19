@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -55,6 +56,7 @@ public class HomeFragment extends Fragment {
         where=binding.where;
         from=binding.from;
         date=binding.date;
+        passagers=binding.passangers;
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +77,62 @@ public class HomeFragment extends Fragment {
                 activityResultLauncherForLocation.launch(i);
             }
         });
+        passagers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUpPassagers(view);
+            }
+        });
+    }
+    public void popUpPassagers(View view){
+        LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View FilterPopUp=inflater.inflate(R.layout.passagers,null);
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        final PopupWindow popupWindow = new PopupWindow(FilterPopUp, width, height);
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+
+        Button cancel,select;
+        SeekBar sb;
+        TextView psg;
+
+        select=FilterPopUp.findViewById(R.id.select);
+        cancel=FilterPopUp.findViewById(R.id.cancel);
+        sb=FilterPopUp.findViewById(R.id.seekbar);
+        psg=FilterPopUp.findViewById(R.id.persons);
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String person= psg.getText().toString() + " ppl";
+                passagers.setText(person);
+                popupWindow.dismiss();
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+        sb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                String num= String.valueOf(i);
+                psg.setText(num);
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
     public void popUpCalender(View view){
         LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
