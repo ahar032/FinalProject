@@ -1,13 +1,18 @@
 package com.mahar.busxhacktiv.bus;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResult;
@@ -19,7 +24,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.mahar.busxhacktiv.R;
 import com.mahar.busxhacktiv.databinding.FragmentHomeBinding;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 
 public class HomeFragment extends Fragment {
     ActivityResultLauncher<Intent> activityResultLauncherForLocation;
@@ -43,7 +54,13 @@ public class HomeFragment extends Fragment {
         RegisterActivityForLocation();
         where=binding.where;
         from=binding.from;
-
+        date=binding.date;
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUpCalender(view);
+            }
+        });
         where.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +73,37 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent i=new Intent(getActivity(),ListProvinsi.class);
                 activityResultLauncherForLocation.launch(i);
+            }
+        });
+    }
+    public void popUpCalender(View view){
+        LayoutInflater inflater=(LayoutInflater) getActivity().getSystemService(LAYOUT_INFLATER_SERVICE);
+        View FilterPopUp=inflater.inflate(R.layout.datepicker,null);
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(FilterPopUp, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+
+        DatePicker datePicker=FilterPopUp.findViewById(R.id.datepicker);
+        TextView ok=FilterPopUp.findViewById(R.id.ok);
+        Calendar calendar = Calendar.getInstance();
+        datePicker.setMinDate(calendar.getTimeInMillis());
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int day=datePicker.getDayOfMonth();
+                int month=datePicker.getMonth();
+                int   year = datePicker.getYear();
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, day);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                String formatedDate = sdf.format(calendar.getTime());
+
+                date.setText(formatedDate);
+                popupWindow.dismiss();
             }
         });
     }
@@ -80,17 +128,5 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-
-//        TODO: SALAH mungkin pakai acitivyforlaucher
-//        Intent i=getActivity().getIntent();
-//        if(i!=null){
-//            if(getActivity().getIntent().getStringExtra("where")!=null && !getActivity().getIntent().getStringExtra("where").equals("-")){
-//                where.setText(getActivity().getIntent().getStringExtra("where"));
-//            } else if(getActivity().getIntent().getStringExtra("from")!=null && !getActivity().getIntent().getStringExtra("from").equals("-")){
-//                from.setText(getActivity().getIntent().getStringExtra("from"));
-//            }
-//        }
-
 
 }
