@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
         from=binding.from;
         date=binding.date;
         passagers=binding.passangers;
+        btn=binding.btnAdd;
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +82,26 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 popUpPassagers(view);
+            }
+        });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String departure,arrival,tgl,passager;
+                departure=from.getText().toString().trim();
+                arrival=where.getText().toString().trim();
+                tgl=date.getText().toString().trim();
+                passager=passagers.getText().toString().trim();
+
+                if(!departure.isEmpty() && !arrival.isEmpty() && !tgl.isEmpty() && !passager.isEmpty()){
+                    Intent i=new Intent(getContext(),SearchResultActivity.class);
+                    i.putExtra("date",tgl);
+                    i.putExtra("departure",departure);
+                    i.putExtra("arrival",arrival);
+                    i.putExtra("passagers",passager);
+                    startActivity(i);
+                }
+
             }
         });
     }
