@@ -157,7 +157,7 @@
             android:textColor="#808080"/>
         <TextView
             android:layout_marginTop="15dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/sort_by_best_experience"
             android:background="@drawable/background_popup"
@@ -173,6 +173,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ly3"
         android:layout_marginTop="20dp"
         android:paddingHorizontal="22dp"
         android:layout_width="343dp"
@@ -317,6 +318,156 @@
                 android:text="@string/book_now"
                 android:textColor="@color/white"
                 android:textSize="11sp"
+                android:letterSpacing="0.01"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:backgroundTint="#C3C1C1"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="22dp"
+        android:layout_width="343dp"
+        android:layout_height="231dp"
+        android:layout_below="@id/ly3"
+        android:layout_centerHorizontal="true"
+        android:paddingVertical="15dp"
+        android:background="@drawable/background_popup"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pahala_kencana"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="#ADADAD"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="@string/p_1963_nm"
+                        android:textSize="12sp"
+                        android:textColor="#adadad"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_02_30"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#585858"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text=""
+                        android:id="@+id/card_departure_disable"
+                        android:textSize="12sp"
+                        android:textColor="#adadad"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="35dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_16_00"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#585858"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text=""
+                        android:id="@+id/card_arrival_disable"
+                        android:textSize="12sp"
+                        android:textColor="#adadad"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/background_popup"
+                    android:backgroundTint="#D8D8D8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_4_9_5"
+                        android:textAlignment="center"
+                        android:textColor="#8C6F12"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/ic_baseline_star_24" />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="30dp"
+                    android:textColor="#adadad"
+                    android:textSize="12sp"
+                    android:textAlignment="textEnd"
+                    android:text="@string/_120_reviews"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rp_166_000_00"
+                    android:textColor="#8749F2"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/seat"
+                    android:textSize="12sp"
+                    android:textColor="#585858"/>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/SoldOut"
+                android:layout_width="85dp"
+                android:layout_height="40dp"
+                android:backgroundTint="#D8D8D8"
+                android:text="Soldout"
+                android:textColor="#808080"
+                android:textSize="11sp"
+                android:enabled="false"
                 android:letterSpacing="0.01"/>
         </LinearLayout>
     </LinearLayout>

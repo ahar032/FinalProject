@@ -16,7 +16,7 @@ import com.mahar.busxhacktiv.R;
 
 public class SearchResultActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncherForLocation;
-    TextView departure,arrival,card_departure,card_arrival,date,seat;
+    TextView departure,arrival,card_departure,card_arrival,date,seat,card_arrival_disable,card_departure_disable;
     ImageView where,from,goback;
 
     @Override
@@ -34,6 +34,9 @@ public class SearchResultActivity extends AppCompatActivity {
 
             card_arrival.setText(arrival.getText().toString());
             card_departure.setText(departure.getText().toString());
+
+            card_arrival_disable.setText(arrival.getText().toString());
+            card_departure_disable.setText(departure.getText().toString());
         }
     }
 
@@ -49,6 +52,8 @@ public class SearchResultActivity extends AppCompatActivity {
         arrival=findViewById(R.id.arrival);
         card_arrival=findViewById(R.id.card_arrival);
         card_departure=findViewById(R.id.card_departure);
+        card_arrival_disable=findViewById(R.id.card_arrival_disable);
+        card_departure_disable=findViewById(R.id.card_departure_disable);
 
         date=findViewById(R.id.date);
         seat=findViewById(R.id.seat);
@@ -92,6 +97,9 @@ public class SearchResultActivity extends AppCompatActivity {
 
                             card_arrival.setText(arrival.getText().toString());
                             card_departure.setText(departure.getText().toString());
+
+                            card_departure_disable.setText(departure.getText().toString());
+                            card_arrival_disable.setText(arrival.getText().toString());
                         }
                     }
                 });
