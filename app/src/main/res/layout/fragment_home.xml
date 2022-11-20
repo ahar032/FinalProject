@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bus.HomeFragment"
-    android:layout_marginHorizontal="16dp">
+    android:background="#eaeaea">
     <ImageView
+        android:layout_marginHorizontal="16dp"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:id="@+id/logo"
