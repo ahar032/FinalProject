@@ -160,7 +160,6 @@ public class ListProvinsi extends AppCompatActivity {
                     loading(true);
                     for (DataSnapshot sp:snapshot.getChildren()){
                         Provinsi provinsi=sp.getValue(Provinsi.class);
-                        list.add(provinsi);
                         listAll.add(provinsi.getName());
                     }
                     provinsiAdapter.notifyDataSetChanged();
