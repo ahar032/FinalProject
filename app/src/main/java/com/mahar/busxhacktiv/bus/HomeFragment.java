@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
                     i.putExtra("date",tgl);
                     i.putExtra("departure",departure);
                     i.putExtra("arrival",arrival);
-                    i.putExtra("passagers",passager);
+                    i.putExtra("passagers",passager.replaceAll("[^0-9]", ""));
                     startActivity(i);
                 }
 
