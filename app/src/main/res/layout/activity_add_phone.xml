@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".auth.AddPhoneActivity"
-    android:layout_marginHorizontal="32dp">
+    android:background="#eaeaea"
+    >
 
     <TextView
+        android:layout_marginHorizontal="32dp"
         android:id="@+id/almost_there"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +17,7 @@
         android:textAppearance="@style/almost_ther"
         android:layout_marginTop="60dp"/>
     <TextView
+        android:layout_marginHorizontal="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/subtitle"
@@ -24,6 +27,7 @@
         android:translationY="-4.8sp"
         android:textAppearance="@style/fill_your_p"/>
     <ImageView
+        android:layout_marginHorizontal="32dp"
         android:layout_below="@id/subtitle"
         android:id="@+id/picture"
         android:layout_centerHorizontal="true"
@@ -34,6 +38,7 @@
         android:contentDescription="@string/picture"/>
 
     <RelativeLayout
+        android:layout_marginHorizontal="32dp"
         android:id="@+id/rel_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
