@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bus.HomeFragment"
-    android:background="#eaeaea">
+    android:background="#f4f4f4">
     <ImageView
         android:layout_marginHorizontal="16dp"
         android:layout_width="70dp"

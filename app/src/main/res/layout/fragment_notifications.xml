@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bus.NotificationsFragment"
-    android:background="#eaeaea">
+    android:background="#f4f4f4">
 
     <TextView
         android:id="@+id/text_notifications"
