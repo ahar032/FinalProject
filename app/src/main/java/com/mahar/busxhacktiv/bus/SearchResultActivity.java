@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,8 +18,9 @@ import com.mahar.busxhacktiv.R;
 public class SearchResultActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> activityResultLauncherForLocation;
     TextView departure,arrival,card_departure,card_arrival,date,seat,card_arrival_disable,card_departure_disable;
+    TextView tDeparture,tArrival;
     ImageView where,from,goback;
-
+    Button btnBookNow;
     @Override
     protected void onStart() {
         super.onStart();
@@ -59,6 +61,32 @@ public class SearchResultActivity extends AppCompatActivity {
         seat=findViewById(R.id.seat);
         where=findViewById(R.id.where);
         from=findViewById(R.id.from);
+
+        tDeparture=findViewById(R.id.time_departure);
+        tArrival=findViewById(R.id.time_arrival);
+
+        btnBookNow=findViewById(R.id.bookNow);
+
+        btnBookNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String tgl=date.getText().toString().trim();
+                String passager=seat.getText().toString().trim().replaceAll("[^0-9]", "");
+                String timeDeparture=tDeparture.getText().toString().trim();
+                String timeArrival=tArrival.getText().toString().trim();
+                String tujuan=arrival.getText().toString().trim();
+                String lokasi=departure.getText().toString().trim();
+
+                Intent i=new Intent(SearchResultActivity.this,InfoBusActivity.class);
+                i.putExtra("date",tgl);
+                i.putExtra("passagers",passager);
+                i.putExtra("tDeparture",timeDeparture);
+                i.putExtra("tArrival",timeArrival);
+                i.putExtra("departure",lokasi);
+                i.putExtra("arrival",tujuan);
+                startActivity(i);
+            }
+        });
 
         goback.setOnClickListener(new View.OnClickListener() {
             @Override
