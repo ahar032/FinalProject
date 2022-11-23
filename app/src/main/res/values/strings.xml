@@ -47,4 +47,12 @@
     <string name="pahala_kencana">Pahala Kencana</string>
     <string name="_16_00">16.00</string>
     <string name="_02_30">02.30</string>
+    <string name="book_a_trip">Book a trip</string>
+    <string name="star">star</string>
+    <string name="rating">9/10</string>
+    <string name="see_a_picture">See a picture</string>
+    <string name="friday_23_jul_2019">Friday, 23 Jul 2019</string>
+    <string name="bus_no">Bus No</string>
+    <string name="available_seat">Available Seat</string>
+    <string name="_24_seat_are_available">24 Seat are available</string>
 </resources>
