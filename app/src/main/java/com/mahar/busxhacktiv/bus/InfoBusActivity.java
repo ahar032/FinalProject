@@ -106,7 +106,7 @@ public class InfoBusActivity extends AppCompatActivity {
                                 if(getIntent().getStringExtra("departure")!=null && provinsi.getName().contains(getIntent().getStringExtra("departure"))){
                                     dep= provinsi.getName();
                                     iddep=provinsi.getId();
-                                    busInfo=busInfo+"/"+provinsi.getId();
+                                    busInfo=busInfo+"?"+provinsi.getId();
                                 }else if(getIntent().getStringExtra("arrival")!=null && provinsi.getName().contains(getIntent().getStringExtra("arrival"))){
                                     arri=provinsi.getName();
                                     idarri= provinsi.getId();
@@ -117,7 +117,7 @@ public class InfoBusActivity extends AppCompatActivity {
                             Intent i=new Intent(InfoBusActivity.this,ChooseSeatActivity.class);
                             i.putExtra("busId",busInfo);
                             i.putExtra("date",tgl);
-                            i.putExtra("amount",amount);
+                            i.putExtra("amount",amount.trim().replaceAll("[^0-9]", ""));
                             i.putExtra("tickets",jTicket);
                             i.putExtra("departure",dep);
                             i.putExtra("iddeparture",iddep);
