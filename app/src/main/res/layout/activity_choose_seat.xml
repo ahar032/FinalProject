@@ -306,11 +306,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginStart="20dp">
+
             <ImageView
-                android:layout_width="20dp"
+                android:layout_width="16dp"
                 android:layout_height="20dp"
                 android:background="@drawable/background_popup"
-                android:backgroundTint="#F88C99F1"/>
+                android:backgroundTint="#F88C99F1" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

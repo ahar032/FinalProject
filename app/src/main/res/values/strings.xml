@@ -55,4 +55,6 @@
     <string name="bus_no">Bus No</string>
     <string name="available_seat">Available Seat</string>
     <string name="_24_seat_are_available">24 Seat are available</string>
+    <string name="PUBLISH_KEY">pk_test_51JmDRXCMVgixHBfbPK4UyzfbjuGGMfE1WNvxZypHcEs2go9c395bbNmhzsQBnYEIrico3unSFptcX59OwvKOg1qu002EtUjSV8</string>
+    <string name="SECRET_KEY">sk_test_51JmDRXCMVgixHBfbwFEMzU2q5xTQZUNSEywIrOmR755nTWM4JYqXUKwNjYxto2aLUJKxgUxabcvBNt5fftlv42Tm00nxwUJfu0</string>
 </resources>
