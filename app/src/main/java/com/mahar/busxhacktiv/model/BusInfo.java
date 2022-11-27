@@ -1,16 +1,52 @@
 package com.mahar.busxhacktiv.model;
 
 public class BusInfo {
-    String arrival,departure,busId,date;
+    String arrival,departure,busId,date,busName,plateNo,timeDeparture,timeArrival;
 
     public BusInfo() {
     }
 
-    public BusInfo(String arrival, String departure, String busId, String date) {
+    public BusInfo(String arrival, String departure, String busId, String date, String busName, String plateNo, String timeDeparture, String timeArrival) {
         this.arrival = arrival;
         this.departure = departure;
         this.busId = busId;
         this.date = date;
+        this.busName = busName;
+        this.plateNo = plateNo;
+        this.timeDeparture = timeDeparture;
+        this.timeArrival = timeArrival;
+    }
+
+    public String getBusName() {
+        return busName;
+    }
+
+    public void setBusName(String busName) {
+        this.busName = busName;
+    }
+
+    public String getPlateNo() {
+        return plateNo;
+    }
+
+    public void setPlateNo(String plateNo) {
+        this.plateNo = plateNo;
+    }
+
+    public String getTimeDeparture() {
+        return timeDeparture;
+    }
+
+    public void setTimeDeparture(String timeDeparture) {
+        this.timeDeparture = timeDeparture;
+    }
+
+    public String getTimeArrival() {
+        return timeArrival;
+    }
+
+    public void setTimeArrival(String timeArrival) {
+        this.timeArrival = timeArrival;
     }
 
     public String getArrival() {
