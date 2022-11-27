@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.mahar.busxhacktiv.R;
 import com.mahar.busxhacktiv.model.BusInfo;
@@ -36,6 +37,7 @@ import com.stripe.android.paymentsheet.PaymentSheetResultCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,6 +67,7 @@ public class ChooseSeatActivity extends AppCompatActivity {
                 if(snapshot.exists()){
                     Log.i("snapshot","exists");
                     for (DataSnapshot sp:snapshot.getChildren()){
+//                        Map<String, Object> map = (Map<String, Object>) sp.getValue();
                         Order order=sp.getValue(Order.class);
                         OldTickets.addAll(order.getDescripsi());
                     }
@@ -102,6 +105,7 @@ public class ChooseSeatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(tickets.size()==Integer.parseInt(getIntent().getStringExtra("tickets"))){
+                    payment.setEnabled(false);
                     getCustomerId();
                 }else{
                     Toast.makeText(ChooseSeatActivity.this, "input seat", Toast.LENGTH_SHORT).show();
@@ -253,6 +257,7 @@ public class ChooseSeatActivity extends AppCompatActivity {
             String departure=getIntent().getStringExtra("departure");
             String arrival=getIntent().getStringExtra("arrival");
             String tglKeberangkatan= getIntent().getStringExtra("date");
+
             UUID id=UUID.randomUUID();
 
             Order order=new Order();
@@ -261,14 +266,21 @@ public class ChooseSeatActivity extends AppCompatActivity {
             order.setAmount(String.valueOf(harga));
             order.setTickets(ticket);
             order.setBusId(busInfo);
+            order.setUserId(auth.getUid());
 
+            reference.child("Orders").child(id.toString()).setValue(order);
+            reference.child("Orders").child(id.toString()).child("date").setValue(ServerValue.TIMESTAMP);
             BusInfo bus=new BusInfo();
             bus.setBusId(busInfo);
+            bus.setBusName(getString(R.string.sempati_star));
+            bus.setPlateNo(getString(R.string.p_1963_nm));
+            bus.setTimeArrival(getString(R.string._09_30));
+            bus.setTimeDeparture(getString(R.string._17_30));
             bus.setArrival(arrival);
             bus.setDeparture(departure);
             bus.setDate(tglKeberangkatan);
-            reference.child("Orders").child(id.toString()).setValue(order);
             reference.child("Bus").child(busInfo).setValue(bus);
+
 
             Intent i=new Intent(ChooseSeatActivity.this,Bus.class);
             startActivity(i);
