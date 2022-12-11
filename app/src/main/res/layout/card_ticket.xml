@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/background_popup"
             android:backgroundTint="#8749F2"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingVertical="10dp"
             android:paddingHorizontal="24dp">
             <TextView
@@ -30,10 +30,11 @@
                 android:textStyle="bold"
                 android:id="@+id/dateOrder"/>
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="textEnd"
                 android:id="@+id/orderId"
+                android:layout_marginTop="7dp"
                 android:text="Book No.1090"
                 android:textColor="@color/white"
                 android:textSize="12sp"
@@ -94,27 +95,7 @@
                 android:layout_marginStart="10dp"
                 android:textSize="12sp"
                 android:textColor="#adadad"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="end">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:backgroundTint="#61CA5F"
-                    android:src="@drawable/paid"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="Paid"
-                    android:gravity="center_vertical"
-                    android:textSize="14sp"
-                    android:textColor="#61CA5F"
-                    android:layout_marginStart="10dp"/>
 
-            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,6 +124,53 @@
                 android:layout_marginStart="10dp"
                 android:textSize="12sp"
                 android:textColor="#adadad"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingEnd="70dp"
+            android:paddingStart="24dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/ly4">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/amount"
+                android:text="Rp "
+                android:textColor="#693BB8"
+                android:textSize="14sp"
+                android:gravity="center_vertical"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:id="@+id/harga"
+                android:textColor="#693BB8"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/statuspic"
+                    android:contentDescription="@string/picture"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/detailstatus"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="#61CA5F"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
