@@ -122,7 +122,7 @@ public class InfoBusActivity extends AppCompatActivity {
                             i.putExtra("departure",dep);
                             i.putExtra("iddeparture",iddep);
                             i.putExtra("idarrival",idarri);
-                            i.putExtra("arrival",arri);
+                            i.putExtra("arrival",arrival.getText().toString());
                             startActivity(i);
                         }
                     }
