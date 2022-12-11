@@ -24,10 +24,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mahar.busxhacktiv.R;
+import com.mahar.busxhacktiv.bus.Bus;
 
 public class SignUpActivity extends AppCompatActivity {
     Button btnsignup;
@@ -94,27 +99,47 @@ public class SignUpActivity extends AppCompatActivity {
     private void firebaseSigninWithGoogle(Task<GoogleSignInAccount> task){
         try {
             GoogleSignInAccount account=task.getResult(ApiException.class);
-            Intent i=new Intent(SignUpActivity.this,AddPhoneActivity.class);
-            startActivity(i);
-            finish();
-            firebaseGoogleAccount(account);
+
+            AuthCredential authCredential= GoogleAuthProvider.getCredential(account.getIdToken(),null);
+            auth.signInWithCredential(authCredential)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                FirebaseUser user=auth.getCurrentUser();
+                                if(user!=null){
+                                    reference.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            if(snapshot.exists()){
+                                                Intent i=new Intent(SignUpActivity.this, Bus.class);
+                                                startActivity(i);
+                                                finish();
+                                            }else{
+                                                Intent i=new Intent(SignUpActivity.this, AddPhoneActivity.class);
+                                                startActivity(i);
+                                                finish();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+                                pb.setVisibility(View.VISIBLE);
+                            }else{
+                                pb.setVisibility(View.GONE);
+                            }
+                        }
+                    });
         }catch (ApiException e){
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
 
         }
     }
     private  void firebaseGoogleAccount(GoogleSignInAccount account){
-        AuthCredential authCredential= GoogleAuthProvider.getCredential(account.getIdToken(),null);
-        auth.signInWithCredential(authCredential)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            pb.setVisibility(View.VISIBLE);
-                        }else{
-                            pb.setVisibility(View.GONE);
-                        }
-                    }
-                });
+
     }
 }
