@@ -57,4 +57,25 @@
     <string name="_24_seat_are_available">24 Seat are available</string>
     <string name="PUBLISH_KEY">pk_test_51JmDRXCMVgixHBfbPK4UyzfbjuGGMfE1WNvxZypHcEs2go9c395bbNmhzsQBnYEIrico3unSFptcX59OwvKOg1qu002EtUjSV8</string>
     <string name="SECRET_KEY">sk_test_51JmDRXCMVgixHBfbwFEMzU2q5xTQZUNSEywIrOmR755nTWM4JYqXUKwNjYxto2aLUJKxgUxabcvBNt5fftlv42Tm00nxwUJfu0</string>
+    <string name="payment">Payment</string>
+    <string name="total_payment">Total payment</string>
+    <string name="rp166_000_00">Rp166.000,00</string>
+    <string name="please_select_one_of_the_payment_method_below">please select one of the payment method below</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="stripe">Stripe</string>
+    <string name="select">select</string>
+    <string name="complete_booking">Complete Booking</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="name">Name</string>
+    <string name="_08123990823">08123990823</string>
+    <string name="seats">Seats</string>
+    <string name="_2">2</string>
+    <string name="po_name">PO Name</string>
+    <string name="schedule">Schedule</string>
+    <string name="estimated_time">Estimated time</string>
+    <string name="_13h45m">13h45m</string>
+    <string name="seat_no">Seat no</string>
+    <string name="_9_10">9,10</string>
+    <string name="total">Total</string>
+    <string name="continue_to_payment">continue to payment</string>
 </resources>
