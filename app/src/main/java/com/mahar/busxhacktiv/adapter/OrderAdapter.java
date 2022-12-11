@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.mahar.busxhacktiv.R;
 import com.mahar.busxhacktiv.model.BusInfo;
 import com.mahar.busxhacktiv.model.Order;
+import com.squareup.picasso.Picasso;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -50,10 +53,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
         Order order=orderList.get(position);
 
         holder.orderId.setText("Book No "+order.getOrderId());
+        holder.detailstatus.setText(order.getStatus());
+        if(order.getStatus().equals("Paid")){
+            Picasso.get().load(R.drawable.paid).into(holder.picturestatus);
+        }
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String finalAmount = formatter.format(Integer.parseInt(order.getAmount()));
+        holder.amount.setText(finalAmount);
         Date tgl = new Date(order.getDate());
         SimpleDateFormat sdf=new SimpleDateFormat("EEE, d MMM yyyy",Locale.ENGLISH);
-//        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d, yyyy 'at' h:mm a");
-//        DateTimeFormatter dtf3 = DateTimeFormatter.ofPattern("EEE, d MMM yyyy", Locale.ENGLISH);
         String tanggal=sdf.format(tgl);
         holder.date.setText(tanggal);
         reference.child("Bus").child(order.getBusId()).addValueEventListener(new ValueEventListener() {
@@ -82,7 +91,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
     }
 
     public class OrderHolder extends RecyclerView.ViewHolder{
-        TextView busName,tArrival,tDeparture,arrival,departure,orderId,date;
+        TextView busName,tArrival,tDeparture,arrival,departure,orderId,date,amount,detailstatus;
+        ImageView picturestatus;
         public OrderHolder(@NonNull View itemView) {
             super(itemView);
             busName=itemView.findViewById(R.id.busName);
@@ -92,6 +102,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
             departure=itemView.findViewById(R.id.departure);
             orderId=itemView.findViewById(R.id.orderId);
             date=itemView.findViewById(R.id.dateOrder);
+            amount=itemView.findViewById(R.id.amount);
+            detailstatus=itemView.findViewById(R.id.detailstatus);
+            picturestatus=itemView.findViewById(R.id.statuspic);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
