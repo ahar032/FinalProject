@@ -2,24 +2,43 @@ package com.mahar.busxhacktiv.model;
 
 import com.google.firebase.database.ServerValue;
 
+import java.io.Serializable;
 import java.security.Timestamp;
 import java.util.ArrayList;
 
-public class Order {
-    String amount,busId,orderId,tickets,userId;
+public class Order implements Serializable {
+    String amount,busId,orderId,tickets,userId,status,detailStatus;
     Long date;
     ArrayList<String> descripsi = new ArrayList<String>();
     public Order() {
     }
 
-    public Order(String amount, String busId, String orderId, String tickets, String userId, Long date, ArrayList<String> descripsi) {
+    public Order(String amount, String busId, String orderId, String tickets, String userId, String status, String detailStatus, Long date, ArrayList<String> descripsi) {
         this.amount = amount;
         this.busId = busId;
         this.orderId = orderId;
         this.tickets = tickets;
         this.userId = userId;
+        this.status = status;
+        this.detailStatus = detailStatus;
         this.date = date;
         this.descripsi = descripsi;
+    }
+
+    public String getDetailStatus() {
+        return detailStatus;
+    }
+
+    public void setDetailStatus(String detailStatus) {
+        this.detailStatus = detailStatus;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Long getDate() {

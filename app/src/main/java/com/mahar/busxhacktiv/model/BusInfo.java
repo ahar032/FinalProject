@@ -1,20 +1,41 @@
 package com.mahar.busxhacktiv.model;
 
-public class BusInfo {
-    String arrival,departure,busId,date,busName,plateNo,timeDeparture,timeArrival;
+import java.io.Serializable;
+
+public class BusInfo implements Serializable {
+    String arrival,departure,busId,date,busName,plateNo,dateArrival,timeDeparture,timeArrival;
 
     public BusInfo() {
     }
 
-    public BusInfo(String arrival, String departure, String busId, String date, String busName, String plateNo, String timeDeparture, String timeArrival) {
+    public BusInfo(String arrival,
+                   String departure,
+                   String busId,
+                   String date,
+                   String busName,
+                   String plateNo,
+                   String dateArrival,
+                   String timeDeparture,
+                   String timeArrival) {
         this.arrival = arrival;
         this.departure = departure;
         this.busId = busId;
         this.date = date;
         this.busName = busName;
         this.plateNo = plateNo;
+        this.dateArrival = dateArrival;
         this.timeDeparture = timeDeparture;
         this.timeArrival = timeArrival;
+    }
+
+
+
+    public String getDateArrival() {
+        return dateArrival;
+    }
+
+    public void setDateArrival(String dateArrival) {
+        this.dateArrival = dateArrival;
     }
 
     public String getBusName() {
