@@ -1,5 +1,6 @@
 package com.mahar.busxhacktiv.bus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mahar.busxhacktiv.adapter.OrderAdapter;
 import com.mahar.busxhacktiv.databinding.FragmentDashboardBinding;
+import com.mahar.busxhacktiv.model.BusInfo;
 import com.mahar.busxhacktiv.model.Order;
+import com.mahar.busxhacktiv.order.DetailOrderActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +57,28 @@ public class TicketsFragment extends Fragment {
         list=new ArrayList<>();
         orderAdapter=new OrderAdapter(list,getContext());
         rv.setAdapter(orderAdapter);
+        orderAdapter.setSetOnItemClickListener(new OrderAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Order order) {
+                reference.child("Bus").child(order.getBusId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            BusInfo bus=snapshot.getValue(BusInfo.class);
+                            Intent i=new Intent(getContext(), DetailOrderActivity.class);
+                            i.putExtra("bus",bus);
+                            i.putExtra("order",order);
+                            startActivity(i);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
         reference.child("Orders").orderByChild("userId").equalTo(auth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
