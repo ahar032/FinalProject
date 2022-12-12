@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 public class Order implements Serializable {
     String amount,busId,orderId,tickets,userId,status,detailStatus;
+    Float rate;
     Long date;
     ArrayList<String> descripsi = new ArrayList<String>();
     public Order() {
     }
 
-    public Order(String amount, String busId, String orderId, String tickets, String userId, String status, String detailStatus, Long date, ArrayList<String> descripsi) {
+    public Order(String amount, String busId, String orderId, String tickets, String userId, String status, String detailStatus, Float rate, Long date, ArrayList<String> descripsi) {
         this.amount = amount;
         this.busId = busId;
         this.orderId = orderId;
@@ -21,8 +22,17 @@ public class Order implements Serializable {
         this.userId = userId;
         this.status = status;
         this.detailStatus = detailStatus;
+        this.rate = rate;
         this.date = date;
         this.descripsi = descripsi;
+    }
+
+    public Float getRate() {
+        return rate;
+    }
+
+    public void setRate(Float rate) {
+        this.rate = rate;
     }
 
     public String getDetailStatus() {
