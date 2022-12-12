@@ -78,4 +78,12 @@
     <string name="_9_10">9,10</string>
     <string name="total">Total</string>
     <string name="continue_to_payment">continue to payment</string>
+    <string name="ticket_detail">Ticket Detail</string>
+    <string name="book_no_1090">Book No.1090</string>
+    <string name="status">Status</string>
+    <string name="paid">Paid</string>
+    <string name="detail">Detail</string>
+    <string name="detail_status_order">Detail status order</string>
+    <string name="on_going">on going</string>
+    <string name="selesai">Selesai</string>
 </resources>
